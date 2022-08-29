@@ -42,13 +42,15 @@ export function RegisterLoginData() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {
+      errors
+    }
   } = useForm({
     resolver: yupResolver(schema)
   });
 
   async function handleRegister(formData: FormData) {
-   
+
     const newLoginData = {
       id: String(uuid.v4()),
       ...formData
@@ -82,7 +84,7 @@ export function RegisterLoginData() {
             testID="service-name-input"
             title="Nome do serviço"
             name="service_name"
-            error={errors.service_name && JSON.stringify(errors.service_name.message)}
+            error={errors.service_name && errors.service_name.message}
             control={control}
             autoCapitalize="sentences"
             autoCorrect
@@ -101,7 +103,7 @@ export function RegisterLoginData() {
             testID="password-input"
             title="Senha"
             name="password"
-            error={errors.password && JSON.stringify(errors.password.message)}
+            error={errors.password && errors.password.message}
             control={control}
             secureTextEntry
           />
